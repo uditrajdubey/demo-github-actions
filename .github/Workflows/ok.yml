@@ -1,0 +1,14 @@
+#Goal - To say hello and print title name 
+
+name: OKkkk
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  greet:
+      runs-on: ubuntu-latest
+      steps:
+        - name: say okk 
+          run: echo "Hello"
