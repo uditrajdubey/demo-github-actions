@@ -3,7 +3,7 @@
 name: Hello
 
 on:
-  workflow_dispatch:
+  push:
 
 jobs:
 
