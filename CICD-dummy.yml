@@ -3,8 +3,10 @@
 name: CICD
 
 on:
-   push:
+  push:
 
+  
+jobs:
    # CI
      code:
            runs-on: ubuntu-latest
@@ -28,9 +30,9 @@ on:
                run: echo "test is successfully done "
      # CD     
      deploy:
-           needs: [code,build,test]
-           runs-on: ubuntu-latest
-           steps:
+          needs: [code,build,test]
+          runs-on: ubuntu-latest
+          steps:
              - name: deploy it to the server
                run: echo "successfully deployed"
           
