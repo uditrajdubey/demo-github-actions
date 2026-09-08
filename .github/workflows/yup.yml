@@ -7,8 +7,14 @@ on:
 
 jobs:
 
-  greet:
+   greet:
       runs-on: ubuntu-latest
       steps:
         - name: say okk 
           run: echo "Hello  okk"
+  repo-name:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Print repo name only
+          run: echo "The repo name is ${{ github.event.repository.name }}"
+
