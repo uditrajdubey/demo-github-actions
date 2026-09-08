@@ -13,6 +13,7 @@ jobs:
         - name: say okk 
           run: echo "Hello  okk"
    repo-name:
+      needs: greet
       runs-on: ubuntu-latest
       steps:
         - name: Print repo name only
