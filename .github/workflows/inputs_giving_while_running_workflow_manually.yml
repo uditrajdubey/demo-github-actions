@@ -1,0 +1,38 @@
+# Goal i will pass the env variable and use it in jobs 
+
+name: using the repo variable 
+
+on:
+  workflow_dispatch:
+    inputs:
+      env:
+        description: select the env you want
+        default: 'dev'  
+        required: true
+        type: choice
+        options:
+          - dev
+          - stg
+          - prod
+        
+env:
+  NAME: UDIT
+  MID_NAME: RAJ
+jobs:
+  Repo-variable-use:
+    runs-on: ubuntu-latest
+    steps:
+      - name: use the env varaible
+        run: echo " my nam is ${{ env.NAME }} ${{ env.MID_NAME }} "
+      - name: secrets of my docker 
+        run: echo " my password of dockerhub is ${{secrets.UDIT_DOCKER_PASSWORD}}"
+      - name: i am using repo variable 
+        run: echo " my password of dockerhub is ${{vars.DOCKERHUB_USERNAME}}" 
+        
+        
+    
+    
+  
+
+    
+
