@@ -1,6 +1,6 @@
 # Goal i will pass the env variable and use it in jobs 
 
-name: use the repo variable
+name: using the repo variable 
 
 on:
   push: 
