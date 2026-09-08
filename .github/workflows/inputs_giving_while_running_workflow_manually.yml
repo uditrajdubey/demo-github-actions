@@ -5,7 +5,7 @@ name: give the input env while running the workflow manually
 on:
   workflow_dispatch:
     inputs:
-      env:
+      giving:
         description: select the env you want
         default: 'dev'  
         required: true
@@ -19,7 +19,7 @@ env:
   NAME: UDIT
   MID_NAME: RAJ
 jobs:
-  Repo-variable-use:
+  giving-input-while-running-manually:
     runs-on: ubuntu-latest
     steps:
       - name: use the env varaible
@@ -28,6 +28,8 @@ jobs:
         run: echo " my password of dockerhub is ${{secrets.UDIT_DOCKER_PASSWORD}}"
       - name: i am using repo variable 
         run: echo " my password of dockerhub is ${{vars.DOCKERHUB_USERNAME}}" 
+      - name: shows the input env i have used
+        run: echo "my input env is ${{inputs.giving}}
         
         
     
