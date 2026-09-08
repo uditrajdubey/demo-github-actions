@@ -29,7 +29,7 @@ jobs:
       - name: i am using repo variable 
         run: echo " my password of dockerhub is ${{vars.DOCKERHUB_USERNAME}}" 
       - name: shows the input env i have used
-        run: echo "my input env is ${{inputs.giving}}
+        run: echo "my input env is ${{inputs.giving}} "
         
         
     
