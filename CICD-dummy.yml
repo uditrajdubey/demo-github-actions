@@ -23,7 +23,7 @@ jobs:
           run: echo "code is successfully build"
           
   test:
-      needs: test
+      needs: build
       runs-on: ubuntu-latest
       steps:
        - name: testing should be done 
