@@ -12,7 +12,7 @@ jobs:
       steps:
         - name: say okk 
           run: echo "Hello  okk"
-  repo-name:
+   repo-name:
       runs-on: ubuntu-latest
       steps:
         - name: Print repo name only
