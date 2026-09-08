@@ -3,37 +3,37 @@
 name: CICD
 
 on:
-  push:
+  workflow_dispatch:
 
   
 jobs:
    # CI
-     code:
-           runs-on: ubuntu-latest
-           steps:
-             - name: devloper will write the code
-              run: echo "code is written"
+  code:
+      runs-on: ubuntu-latest
+      steps:
+       - name: devloper will write the code
+         run: echo "code is written"
           
           
-     build:
-           needs: code
-           runs-on: ubuntu-latest
-           steps:
-            - name: build the code
-              run: echo "code is successfully build"
+  build:
+      needs: code
+      runs-on: ubuntu-latest
+      steps:
+        - name: build the code
+          run: echo "code is successfully build"
           
-     test:
-           needs: test
-           runs-on: ubuntu-latest
-           steps:
-             - name: testing should be done 
-               run: echo "test is successfully done "
+  test:
+      needs: test
+      runs-on: ubuntu-latest
+      steps:
+       - name: testing should be done 
+         run: echo "test is successfully done "
      # CD     
-     deploy:
-          needs: [code,build,test]
-          runs-on: ubuntu-latest
-          steps:
-             - name: deploy it to the server
-               run: echo "successfully deployed"
+  deploy:
+      needs: [code,build,test]
+      runs-on: ubuntu-latest
+      steps:
+         - name: deploy it to the server
+           run: echo "successfully deployed"
           
      
