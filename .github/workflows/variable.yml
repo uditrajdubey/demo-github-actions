@@ -3,8 +3,8 @@
 name: using the repo variable 
 
 on:
-  push: 
-
+  workflow_dispatch:
+    
 env:
   NAME: UDIT
   MID_NAME: RAJ
@@ -16,6 +16,10 @@ jobs:
         run: echo " my nam is ${{ env.NAME }} ${{ env.MID_NAME }} "
       - name: secrets of my docker 
         run: echo " my password of dockerhub is ${{secrets.UDIT_DOCKER_PASSWORD}}"
+        
+# This is the repository variable used below and we have created this repo variable in github and this variable can be used anywher in this repo but it canot be used outside 
+# this demo-github-action repo 
+
       - name: i am using repo variable 
         run: echo " my password of dockerhub is ${{vars.DOCKERHUB_USERNAME}}" 
         
