@@ -1,0 +1,30 @@
+
+# GOAL: To check if python code is syntactically correct 
+
+#  Name of the workflow
+
+name : code lint
+
+# this workflow should run automatically on every push 
+on:
+  push:
+
+jobs:
+
+# Name of the jobs 
+  code-linter:
+
+# name of the Os on which job  runs / this job runs on ubuntu latest 
+    runs-on: ubuntu-latest
+
+    steps:
+
+# First step is for to clone the github code 
+      - name: code checkout
+        uses: actions/checkout@v7  # This is the github actions used it works same as git clone .repo code url.
+
+# Now , which is the most popular linter is used in python - its ruff
+
+      - name: code linter for python
+        run: ruff check .  # now 1 ques does my ubuntu has ruff installed -- anser is  NO , so we will write the ruff
+                           # in requirements.txt file 
