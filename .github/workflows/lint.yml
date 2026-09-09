@@ -27,4 +27,4 @@ jobs:
 
       - name: code linter for python
         run: ruff check .  # now 1 ques does my ubuntu has ruff installed -- anser is  NO , so we will write the ruff
-                           # in requirements.txt file 
+                           # in requirements.txt file and then push the changes in githib and then see the Github actions
