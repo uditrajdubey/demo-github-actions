@@ -23,7 +23,20 @@ jobs:
       - name: code checkout
         uses: actions/checkout@v7  # This is the github actions used it works same as git clone .repo code url.
 
-# Now , which is the most popular linter is used in python - its ruff
+
+# after code checkout we need to setup/install python because our goal is to check python code
+      - name: setup
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+
+# Now, after installing or setup the  python we can can install all the dependencies
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt  
+
+# Now after setup the python and installing dependencies we do - 
+# which is the most popular linter is used in python - its ruff
 
       - name: code linter for python
         run: ruff check .  # now 1 ques does my ubuntu has ruff installed -- anser is  NO , so we will write the ruff
