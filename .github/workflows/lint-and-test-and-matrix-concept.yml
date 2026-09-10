@@ -15,7 +15,7 @@ jobs:
   code-linter-and-test-and-using-matrix-concept:
     strategy:
       matrix:
-        python-versions: ['3.13' , '3.14' , '3.15']
+        python-versions: ['3.12' , '3.13' , '3.14']
 
 # name of the Os on which job  runs / this job runs on ubuntu latest 
     runs-on: ubuntu-latest
