@@ -3,13 +3,13 @@
 name: CI 
 
 on:
-  push:
+  push: 
 
 jobs:
   code-lint:
-    uses: ./.github/workflows/lint-and-test-and-matrix-concept.yml
+    uses: ./.github/workflows/lint-and-test-and-matrix-concept.yml # the lint-and-test-and-matrix-concept.yml workflow is called here
 
   Build-and-push:
-    needs: code-lint
-    secrets: inherit 
-    uses: ./.github/workflows/Docker-build-and-push.yml
+    needs: code-lint  # first code-lint  will execute then  only build and push will execute
+    secrets: inherit  # docker_token secrets are inherited here also in this CI workflow
+    uses: ./.github/workflows/Docker-build-and-push.yml  # here also workfloe is called from Docker-build-and-push.yml
