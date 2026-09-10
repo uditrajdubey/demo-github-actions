@@ -5,7 +5,7 @@ name : code lint and test and using matrix concept for python version
 
 # this workflow should run automatically on every push 
 on:
-  workflow_dispatch:
+  workflow_call:
 
 jobs:
 
