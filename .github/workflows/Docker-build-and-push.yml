@@ -3,7 +3,7 @@
 name: Build and push 
 
 on: 
-  push:
+  workflow_call:
 
 jobs:
   build-and-push-image-to-dockerhub:
