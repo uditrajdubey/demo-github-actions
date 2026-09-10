@@ -1,8 +1,6 @@
-
 # GOAL: To check if python code is syntactically correct 
 
 # Name of the workflow
-
 name : code lint and test and using matrix concept for python version
 
 # this workflow should run automatically on every push 
@@ -35,15 +33,12 @@ jobs:
           python-version: ${{ matrix.python-versions }}  # above variable is called with matrix
 
 # Now, after installing or setup the  python we can can install  all the dependencies
-
       - name: Install dependencies
         run: pip install -r requirements.txt  
 
 # Now after setup the python and installing dependencies we do is -  which is the most popular linter is used in python - its ruff
-
       - name: code linter for python
-        run: ruff check .  # now 1 ques does my ubuntu has ruff installed -- anser is  NO , so we will write the ruff
-                           # in requirements.txt file and then push the changes in githib and then see the Github actions
+        run: ruff check .  # now 1 ques does my ubuntu has ruff installed -- anser is  NO , so we will write the ruff in requirements.txt file and then push the changes in githib and then see the Github actions
 
       - name: python code test 
-        run: pytest                   
+        run: pytest         # write pytest in requirements.txt so it would be installed           
