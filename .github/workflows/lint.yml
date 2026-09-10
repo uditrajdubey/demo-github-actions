@@ -7,7 +7,7 @@ name : code lint
 
 # this workflow should run automatically on every push 
 on:
-  push:
+  workflow_dispatch:
 
 jobs:
 
