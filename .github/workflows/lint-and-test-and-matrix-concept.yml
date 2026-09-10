@@ -1,7 +1,7 @@
 
 # GOAL: To check if python code is syntactically correct 
 
-#  Name of the workflow
+# Name of the workflow
 
 name : code lint and test and using matrix concept for python version
 
@@ -13,9 +13,10 @@ jobs:
 
 # Name of the jobs 
   code-linter-and-test-and-using-matrix-concept:
+  # matrix stragey concept always comes below the job name 
     strategy:
-      matrix:
-        python-versions: ['3.12' , '3.13' , '3.14']
+      matrix: 
+        python-versions: ['3.12' , '3.13' , '3.14'] # it is a vriable which is storing the versions of python and can be used below with matrx.___
 
 # name of the Os on which job  runs / this job runs on ubuntu latest 
     runs-on: ubuntu-latest
@@ -31,7 +32,7 @@ jobs:
       - name: setup
         uses: actions/setup-python@v7
         with:
-          python-version: ${{ matrix.python-versions }}
+          python-version: ${{ matrix.python-versions }}  # above variable is called with matrix
 
 # Now, after installing or setup the  python we can can install  all the dependencies
 
