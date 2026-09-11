@@ -8,7 +8,7 @@ on:
 jobs:
   build-and-push-image-to-dockerhub:
 
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
       
@@ -31,6 +31,8 @@ jobs:
          uses: docker/build-push-action@v7
          with:
           push: true
-          tags: ${{ vars.DOCKERHUB_USERNAME }}/e-comm-python:latest     
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/e-comm-python:latest 
+          load: true    
+
 
 
