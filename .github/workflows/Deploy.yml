@@ -3,7 +3,7 @@
 name: Deploy the project
 
 on:
-  workflow_call:
+  push:
 
 jobs:
   deploy:

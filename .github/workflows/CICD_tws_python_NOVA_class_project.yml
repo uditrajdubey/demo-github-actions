@@ -3,7 +3,7 @@
 name: Full CICD NOVA project of python  
 
 on:
-  push: 
+  workflow_dispatch: 
 
 jobs:
   code-lint:
