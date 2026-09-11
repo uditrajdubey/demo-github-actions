@@ -1,0 +1,6 @@
+services:
+
+  app:
+    image: uditsdocker/e-comm-python:latest
+    port:
+      - "80:80"

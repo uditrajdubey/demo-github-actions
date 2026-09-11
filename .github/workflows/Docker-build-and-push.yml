@@ -8,7 +8,7 @@ on:
 jobs:
   build-and-push-image-to-dockerhub:
 
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       
@@ -23,6 +23,9 @@ jobs:
         with:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: set up docker buildx
+        uses: docker/setup-buildx-action@v4
 
       -  name: Build and push  
          uses: docker/build-push-action@v7

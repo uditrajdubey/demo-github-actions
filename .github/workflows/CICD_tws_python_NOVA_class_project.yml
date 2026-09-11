@@ -1,6 +1,6 @@
 # Goal: TO Run CI for this project 
 
-name: CI 
+name: Full CICD NOVA project of python  
 
 on:
   push: 
@@ -13,3 +13,9 @@ jobs:
     needs: code-lint  # first code-lint  will execute then  only build and push will execute
     secrets: inherit  # docker_token secrets are inherited here also in this CI workflow
     uses: ./.github/workflows/Docker-build-and-push.yml  # here also workfloe is called from Docker-build-and-push.yml
+  
+
+  deploy:
+    needs: [ code-lint , Build-and-push ]
+    secrets: inherit
+    uses: ./.github/workflows/Deploy.yml

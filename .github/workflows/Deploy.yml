@@ -1,0 +1,20 @@
+# GOAL: i have to deploy the project using git hum action 
+
+name: Deploy the project
+
+on:
+  workflow_call:
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: code checkout
+        uses: actions/checkout@v7
+
+      - name: Run docker container
+        run: docker compose up -d 
+
+     
+
+
