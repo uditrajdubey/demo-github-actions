@@ -1,0 +1,56 @@
+# .betterleaks.toml
+# Betterleaks configuration for CI/CD secrets detection
+
+betterleaksMinVersion = "1.0.0"
+
+# 1. INHERIT BUILT-IN RULES
+# This keeps your config minimal by extending the upstream default ruleset
+[extend]
+useDefault = true
+
+# 2. GLOBAL ALLOWLISTS (Ignore known false positives)
+[allowlist]
+# Skip scanning specific folders entirely (e.g., node modules, vendor assets)
+paths = [
+    '''^vendor/''',
+    '''^node_modules/''',
+    '''^db/migrate/''', # Remove if you want to strictly scan database seed history
+    '''.*\.min\.js$''',
+    '''^testdata/.*'''
+]
+
+# Skip legacy commits that contain un-rotatable or grandfathered false positives
+commits = [
+    "abc123def456",
+    "789xyz012abc"
+]
+
+# Allow safe test credentials or placeholder strings
+regexes = [
+    '''sk_test_[A-Za-z0-9]+''',  # Allow safe Stripe test keys
+    '''PLACEHOLDER_.*''',
+    '''EXAMPLE_.*'''
+]
+
+# 3. ADVANCED CONTEXTUAL FILTERING (Expr DSL)
+# prefilters evaluate file properties before running expensive regex engine calculations
+prefilter = "resource.path.startsWith('.github/') == false || finding.secret == ''"
+
+# 4. CUSTOM INTERNAL DETECTION RULES
+# Use this block to define internal or proprietary token signatures
+[[rules]]
+id = "internal-api-token"
+description = "Detects proprietary corporate internal API tokens"
+regex = '''internal_tok_[A-Za-z0-9]{32,64}'''
+keywords = ["internal_tok_"]
+
+# Optional: Add validation directly into the rule (Live Secret Probing)
+[rules.validation]
+expression = "http.get('https://yourcompany.com', { 'Authorization': finding.secret }).status == 200"
+
+
+
+
+
+
+
