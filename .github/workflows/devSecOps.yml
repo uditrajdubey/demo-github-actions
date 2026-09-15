@@ -3,8 +3,25 @@
 name: devSecops pipeline
 
 on:
-  workflow_call:
+  push:
 
-jobs: 
+jobs:
 
-  devSecops-pipelien:
+  # Secret Scan
+  secret-scan:
+    secrets: inherit
+    uses: ./.github/workflows/secret-scan.yml
+
+  #code
+  code:
+    needs: secret-scan
+    uses: ./.github/workflows/lint-and-test-and-matrix-concept.yml
+
+  #sonar scan for the SAST
+
+  sonar-scan:
+    needs: code
+    secrets: inherit
+    uses: ./.github/workflows/sonar-scan.yml
+
+

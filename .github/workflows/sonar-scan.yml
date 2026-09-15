@@ -4,7 +4,7 @@
 name: sonarqube scan
 
 on: 
-  push:
+  workflow_call:
 
 jobs:
   sonar-scan:
