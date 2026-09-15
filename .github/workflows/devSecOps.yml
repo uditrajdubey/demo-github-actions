@@ -28,4 +28,9 @@ jobs:
     needs: sonar-scan
     uses: ./.github/workflows/dependency-scan.yml
 
+  build-the-docker-image-then-scan-with-trivy:
+    needs: dependency-scan
+    secrets: inherit
+    uses: ./.github/workflows/trivy-scans.yml
+
 
