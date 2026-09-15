@@ -1,0 +1,41 @@
+# Goal: to scan the dependency/libraries which needs to be installed in app
+
+name: dependency scan 
+
+on:
+  workflow_call:
+
+jobs:
+  dependency-scan:
+    strategy:
+      matrix:
+        pythion-versions: ['3.12' , '3.13' , '3.14']
+      
+    name: OWASP Dependency Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: setup python
+        uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python-versions}}
+
+      - name: Run OWASP Dependency-Check
+        uses: dependency-check/Dependency-Check_Action@main
+        id: Dependency-Check
+        with:
+          project: 'My Application'
+          path: '.'
+          format: 'HTML' # Generates an easy-to-read report
+          out: 'reports'
+          # Optional: fail the build if a vulnerability severity is high
+          args: --failOnCVSS 7 
+
+      - name: Upload Scan Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: dependency-check-report
+          path: reports
