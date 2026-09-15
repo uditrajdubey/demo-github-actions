@@ -1,0 +1,22 @@
+
+# Goal: to scan the for SAST and code related issues using sonarqube 
+
+name: sonarqube scan
+
+on: 
+  push:
+
+jobs:
+  sonar-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetches full history, from the first commit that is created 
+
+      - name: SonarCloud Scan Action
+        uses: sonarsource/sonarcloud-github-action@v3.1.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
