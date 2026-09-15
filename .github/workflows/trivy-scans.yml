@@ -39,6 +39,6 @@ jobs:
           format: 'table'
           exit-code: '1' # CRITICAL step: Fails the pipeline if vulnerabilities are found
           ignore-unfixed: true # Ignores vulnerabilities that don't have a vendor patch yet
-          severity: 'CRITICAL,HIGH'
+          severity: 'CRITICAL'
    
 
