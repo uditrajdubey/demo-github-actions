@@ -1,0 +1,10 @@
+# goaL
+
+name: devSecops pipeline
+
+on:
+  workflow_call:
+
+jobs: 
+
+  devSecops-pipelien:
