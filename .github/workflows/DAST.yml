@@ -1,0 +1,35 @@
+name: EC2 DAST Security Scan
+
+on:
+  # Triggers manually or can be called by your deployment workflow
+  workflow_dispatch:
+  workflow_call: 
+
+jobs:
+  dast_scan:
+    name: Run DAST on Self-Hosted EC2
+    # Specifies that this job MUST run on your AWS EC2 self-hosted runner
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: OWASP ZAP Baseline Scan
+        uses: zaproxy/action-baseline@v0.13.0
+        with:
+          # Target your app locally on the EC2 instance (change port if needed)
+          target: 'http://localhost:8080'
+          
+          # Fails the GitHub build if vulnerabilities are found
+          fail_action: true
+          
+          # Automatically creates a GitHub issue if bugs are discovered
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Scan Report
+        if: always() 
+        uses: actions/upload-artifact@v4
+        with:
+          name: ec2-zap-dast-report
+          path: zap_report.html
