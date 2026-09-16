@@ -42,3 +42,8 @@ jobs:
     needs: build-the-docker-image-then-scan-with-trivy-and-push-the-image-to-dockerhub
     uses:  ./.github/workflows/Deploy.yml
 
+  DAST:
+    needs: deploy
+    uses: ./.github/workflows/DAST.yml
+    secrets: inherit
+
