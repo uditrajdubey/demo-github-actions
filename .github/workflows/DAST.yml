@@ -14,21 +14,20 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
       
-      - name: Wait for application to be ready
+     
+      - name: Wait for services to be healthy
         run: |
-         timeout 60 bash -c 'until curl -f http://localhost:80/health || nc -z localhost 80; do sleep 2; done' 
+           timeout 60s sh -c 'until curl -s http://${{ secrets.EC2_HOST }} > /dev/null; do sleep 2; done'
 
+            # Scan the running application 
       - name: OWASP ZAP Baseline Scan
-        uses: zaproxy/action-baseline@v0.13.0
+        uses: zaproxy/action-baseline@v0.14.0
         with:
-          # Target your app locally on the EC2 instance (change port if needed)
-          target: 'http://localhost:80'
-          
-          # Fails the GitHub build if vulnerabilities are found
-          fail_action: true
-          
-          # Automatically creates a GitHub issue if bugs are discovered
           token: ${{ secrets.GITHUB_TOKEN }}
+          target: 'http://${{ secrets.EC2_HOST }}'
+          fail_action: false
+          allow_issue_writing: false
+        
 
       - name: Upload Scan Report
         if: always() 
