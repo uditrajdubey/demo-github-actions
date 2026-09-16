@@ -13,6 +13,10 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+      
+      - name: Wait for application to be ready
+        run: |
+         timeout 60 bash -c 'until curl -f http://localhost:80/health || nc -z localhost 80; do sleep 2; done' 
 
       - name: OWASP ZAP Baseline Scan
         uses: zaproxy/action-baseline@v0.13.0
