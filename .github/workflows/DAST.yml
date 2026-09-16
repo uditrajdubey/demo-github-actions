@@ -18,7 +18,7 @@ jobs:
         uses: zaproxy/action-baseline@v0.13.0
         with:
           # Target your app locally on the EC2 instance (change port if needed)
-          target: 'http://localhost:8080'
+          target: 'http://localhost:80'
           
           # Fails the GitHub build if vulnerabilities are found
           fail_action: true
