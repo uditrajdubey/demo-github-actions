@@ -1,8 +1,7 @@
 name: EC2 DAST Security Scan
 
 on:
-  # Triggers manually or can be called by your deployment workflow
-  workflow_dispatch:
+  # Triggers can be called by your workflow
   workflow_call: 
 
 jobs:
