@@ -40,5 +40,17 @@ jobs:
           exit-code: '1' # CRITICAL step: Fails the pipeline if vulnerabilities are found
           ignore-unfixed: true # Ignores vulnerabilities that don't have a vendor patch yet
           severity: 'CRITICAL'
+ 
+      # After scanning image push the image to docker hub 
+
+      - name: Push Docker Image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ vars.DOCKERHUB_USERNAME }}/e-comm-python:${{ github.sha }}
+            ${{ vars.DOCKERHUB_USERNAME }}/e-comm-python:latest
+
    
 

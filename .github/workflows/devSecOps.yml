@@ -24,13 +24,21 @@ jobs:
     secrets: inherit
     uses: ./.github/workflows/sonar-scan.yml
 
+# scan the dependency before installing the packages
   dependency-scan:
     needs: sonar-scan
     uses: ./.github/workflows/dependency-scan.yml
 
-  build-the-docker-image-then-scan-with-trivy:
+#  build-the-docker-image-then-scan-with-trivy-and-push-the-image-to-dockerhub
+
+  build-the-docker-image-then-scan-with-trivy-and-push-the-image-to-dockerhub:
     needs: dependency-scan
     secrets: inherit
     uses: ./.github/workflows/trivy-scans.yml
 
+# Deploy to the self-hosted runner use self-host as a runner in deploy.yml
+ 
+  deploy:
+    needs: build-the-docker-image-then-scan-with-trivy-and-push-the-image-to-dockerhub
+    uses:  ./.github/workflows/Deploy.yml
 
